@@ -9,15 +9,22 @@
   <body class="w-100">
     <?=include('navbar.php');?>
     <div class="container p-5 w-50 mt-3">
-        <h3 class="mb-5">ALUNO: Peter grifin da silva dos matões</h3>
-        <form action="">
-            <div class="mb-3">
-                <label for="just" class="form-label">JUSTIFICATIVA</label>
-                <input type="text" name="just" id="just" class="form-control" required>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-5">ALUNO: Peter grifin da silva dos matões</h3>
+                <h4>TURMA: 8°Z</h4>
             </div>
-            <button type="submit" class="btn btn-success">ENVIAR</button>
-            <a href="moderador.php" class="btn btn-danger ms-2">VOLTAR</a>
-        </form>
+            <div class="card-body">
+                <form action="">
+                    <div class="mb-3">
+                        <label for="just" class="form-label">JUSTIFICATIVA</label>
+                        <input type="text" name="just" id="just" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">ENVIAR</button>
+                    <a href="moderador.php" class="btn btn-danger ms-2">VOLTAR</a>
+                </form>
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
