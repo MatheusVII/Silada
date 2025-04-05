@@ -1,3 +1,4 @@
+
 <?php
     require('conexao.php');
     session_start();
@@ -17,7 +18,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Requisições</h4>
+                        <h4>REQUISIÇÕES PENDENTES</h4>                        
+                        <?=include('btnTabelas.php')?>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
@@ -33,7 +35,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $sql = "SELECT * FROM requisicoes";
+                                    $sql = "SELECT * FROM requisicoes WHERE status = 'pendente'";
                                     $usuarios = mysqli_query($conexao, $sql);
                                     if(mysqli_num_rows($usuarios)>0){
                                         foreach($usuarios as $usuario){
@@ -55,8 +57,9 @@
                                         ?>
                                     </td>
                                     <td>
-                                        <form action="" method="post" class="d-inline">
+                                        <form action="acoes.php" method="post" class="d-inline">
                                             <button type="submit" name="confirmar_requisicao" class="btn btn-success btn-sm">CONFIRMAR</button>
+                                            <input type="hidden" name="id_aluno" value="<?=$usuario['id']?>">
                                         </form>
                                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">RECUSAR</button>
 
@@ -68,16 +71,18 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form>
+                                                    <form action="acoes.php" method="post">
                                                     <div class="mb-3">
                                                         <label for="just" class="col-form-label">JUSTIFICATIVA</label>
-                                                        <input type="text" name="just" id="just" class="form-control" required>
+                                                        <input type="text" name="justificativa" id="just" class="form-control" required>
+                                                        <input type="hidden" name="id_aluno" value="<?=$usuario['id']?>">
                                                     </div>
-                                                    </form>
+                                                    
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">VOLTAR</button>
-                                                    <button type="button" class="btn btn-success">ENVIAR</button>
+                                                    <button type="submit" class="btn btn-success" name="enviar">ENVIAR</button>
+                                                </form>
                                                 </div>
                                                 </div>
                                             </div>
