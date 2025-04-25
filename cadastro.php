@@ -2,7 +2,9 @@
 require('conexao.php');
 session_start();
 ?>
+<?php
 
+?>
 <!doctype html>
 <html lang="en" class="h-100">
   <head>
@@ -24,7 +26,17 @@ session_start();
     ?>
     <main class="d-flex align-itens-center mx-auto form-container bg-light border border-tertiary rounded-3 shadow-sm">
         <form action="acoes.php" method="post">
-            <h1 class="h3 mb-3 fw-normal">Cadastro</h1>
+            <h1 class="d-flex h3 justify-center mb-3 fw-normal">Login</h1>
+
+            <!-- Exibe mensagem de erro -->
+            <?php if (isset($_SESSION['login_erro'])): ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= $_SESSION['login_erro']; ?>
+                </div>
+                <?php unset($_SESSION['login_erro']); // Remove a mensagem após exibi-la ?>
+            <?php endif; ?>
+
+            
             <div class="form-floating mb-3">
                 <input name="cpf" type="text" class="form-control" id="floatingInput" placeholder="Cpf" maxlength="14" onkeyup="this.value = formatarCPF(this.value)">
                 <label for="floatingInput">Cpf</label>
@@ -46,7 +58,7 @@ session_start();
                 <label for="tipo" class="form-check-label">Moderador</label>
                 <input name="tipo" type="radio" class="form-check-input" id="tipo" value="moderador">
             </div>
-            <button type="submit" class="btn btn-success w-50 py-2" name="cadastrar">CADASTRAR</button>
+            <button type="submit" class="btn btn-success w-50 py-2" name="login">ENTRAR</button>
         </form>
     </main>
     <script>
